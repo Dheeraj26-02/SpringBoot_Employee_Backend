@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -28,6 +29,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             emp.setId(employeeEntity.getId());
             emp.setName(employeeEntity.getName());
             emp.setEmail(employeeEntity.getEmail());
+            emp.setAddress(employeeEntity.getAddress());
+            emp.setDesignation(employeeEntity.getDesignation());
+            emp.setDepartment(employeeEntity.getDepartment());
             employees.add(emp);
         }
         return employees;
@@ -35,10 +39,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(Long id) {
-        EmployeeEntity employeeEntity= employeeRepository.findById(id).get();
-        Employee emp=new Employee();
-        BeanUtils.copyProperties(employeeEntity,emp);//saving from local entity to local object
-        return emp;
+        Optional<EmployeeEntity> employeeEntityOpt = employeeRepository.findById(id);
+
+        if (employeeEntityOpt.isPresent()) {
+            Employee emp = new Employee();
+            BeanUtils.copyProperties(employeeEntityOpt.get(), emp);
+            return emp;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -50,15 +59,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean deleteEmployee(Long id) {
-        EmployeeEntity emp= employeeRepository.findById(id).get();
-        employeeRepository.delete(emp);
-        return true;
+        Optional<EmployeeEntity> employeeEntityOpt = employeeRepository.findById(id);
+
+        if (employeeEntityOpt.isPresent()) {
+            employeeRepository.delete(employeeEntityOpt.get());
+            return true;
+        } else {
+            return false;
+        }
     }
     @Override
     public boolean updateEmployee(Long id, Employee employee){
         EmployeeEntity employeeEntity= employeeRepository.findById(id).get();
         employeeEntity.setName(employee.getName());
         employeeEntity.setEmail(employee.getEmail());
+        employeeEntity.setAddress(employee.getAddress());
+        employeeEntity.setDesignation(employee.getDesignation());
+        employeeEntity.setDepartment(employee.getDepartment());
         employeeRepository.save(employeeEntity);
         return true;
     }
