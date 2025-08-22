@@ -1,0 +1,8 @@
+1	Om	om@gmail.com	Sales Executive	Marketing	Ahemdabad,India
+2	Nihar	nihar@gmail.com	Software trainer	EdTech	Pune,India
+3	Aditya	aditya@gmail.com	Support Manager	Management	Mathura,India
+4	Manya	manya@gmail.com	Software Developer Intern	Development	Agra,India
+5	Dheeraj	dheeraj@gmail.com	Software Developer Intern	Development	Noida,India
+6	Jatin	jatin@gmail.com	AWS Deployer	Deployment	Jaipur, India
+7	Kirti	kirti@gmail.com	Sales Executive	Marketing	Chennai, India
+8	Tanvi	tanvi@gmail.com	Software Trainer	EdTech	Kolkata,India
