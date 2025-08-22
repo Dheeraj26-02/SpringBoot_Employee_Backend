@@ -69,15 +69,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
     @Override
-    public boolean updateEmployee(Long id, Employee employee){
-        EmployeeEntity employeeEntity= employeeRepository.findById(id).get();
-        employeeEntity.setName(employee.getName());
-        employeeEntity.setEmail(employee.getEmail());
-        employeeEntity.setAddress(employee.getAddress());
-        employeeEntity.setDesignation(employee.getDesignation());
-        employeeEntity.setDepartment(employee.getDepartment());
-        employeeRepository.save(employeeEntity);
-        return true;
+    public boolean updateEmployee(Employee employee){
+        Optional<EmployeeEntity> opt = employeeRepository.findById(employee.getId());
+        if (opt.isPresent()) {
+            EmployeeEntity existing = opt.get();
+
+            // update fields
+            existing.setName(employee.getName());
+            existing.setEmail(employee.getEmail());
+            existing.setAddress(employee.getAddress());
+            existing.setDesignation(employee.getDesignation());
+            existing.setDepartment(employee.getDepartment());
+            employeeRepository.save(existing);
+            return true;
+        }
+        return false;
     }
 }
 

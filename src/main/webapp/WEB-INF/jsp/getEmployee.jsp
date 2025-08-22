@@ -23,7 +23,7 @@
             gap: 20px;
         }
 
-        .btn {
+        .Btn {
             background-color: #83d50a;
             width: 200px;
             padding: 5px;
@@ -32,11 +32,29 @@
             border: none;
             border-radius: 5px;
         }
+        #homeBtn{
+            background-color: rgb(145, 6, 138);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn {
+            transition: .5s;
+        }
+
+        .btn:hover {
+            transition: .5s;
+            box-shadow: 1px 1px 5px black;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
 <body>
 <div class="container">
+    <a href="/home"  class="btn" id="homeBtn">Home</a>
+
     <h1>Delete Employee</h1>
     <div class="mainPage">
         <form action="/delete" method="post">
@@ -46,7 +64,7 @@
                 </label>
                 <input type="name" class="form-control" id="id" placeholder="Enter your ID">
             </div>
-            <button type="submit" class="btn btn-primary text-center">Delete Employee</button>
+            <button type="submit" class="Btn btn-primary text-center">Delete Employee</button>
         </form>
 
     </div>

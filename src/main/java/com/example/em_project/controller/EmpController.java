@@ -19,6 +19,10 @@ public class EmpController {
     EmployeeService employeeService ;
 
 
+    @GetMapping("/home")
+    public String home(){
+        return "employeePage";
+    }
 
     @GetMapping("/employees")
     public String getAllEmployee(Model model) {
@@ -90,6 +94,7 @@ public class EmpController {
         Employee emp = employeeService.getEmployeeById(id);
 
         if (emp != null) {
+            model.addAttribute("employee", emp);
             return "updateEmployee";
         } else {
             model.addAttribute("errorMsg", "Employee not found with ID " + id);
@@ -97,12 +102,16 @@ public class EmpController {
         }
     }
     @PostMapping("/update")
-    public String updateEmployee(Employee emp,Model model){
-//        employeeService.updateEmployee(id,employee)
-        if(true){
-            return "Updated Successfully";
+    public String updateEmployee(@ModelAttribute("employee") Employee emp, Model model) {
+        boolean updated = employeeService.updateEmployee(emp);
+
+        if (updated) {
+            model.addAttribute("successMsg", "Employee updated successfully!");
+            return "updatePage";
+        } else {
+            model.addAttribute("errorMsg", "Failed to update employee. ID not found.");
+            return "updatePage";
         }
-        return "Not Updated Successfully";
     }
 
 }

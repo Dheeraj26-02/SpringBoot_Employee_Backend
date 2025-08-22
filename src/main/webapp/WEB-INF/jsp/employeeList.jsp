@@ -19,11 +19,29 @@
             gap: 20px;
             justify-content: center;
         }
+        #homeBtn{
+            background-color: rgb(145, 6, 138);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn {
+            transition: .5s;
+        }
+
+        .btn:hover {
+            transition: .5s;
+            box-shadow: 1px 1px 5px black;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <a href="/home"  class="btn" id="homeBtn">Home</a>
+
         <h1>All Employees List</h1>
         <div class="mainPage">
             <table class="table table-striped">

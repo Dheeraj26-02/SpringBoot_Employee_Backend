@@ -23,6 +23,7 @@
             gap: 20px;
         }
 
+
         #add {
             background-color: rgb(50, 145, 6);
             color: white;
@@ -43,6 +44,12 @@
             border: none;
             cursor: pointer;
         }
+        #homeBtn{
+            background-color: rgb(145, 6, 138);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
 
         .btn {
             transition: .5s;
@@ -58,6 +65,7 @@
 
 <body>
     <div class="container">
+        <a href="/home"  class="btn" id="homeBtn">Home</a>
         <h1>Employee Page</h1>
         <div class="mainPage">
             <a href="/employees" class="btn btn-primary" id="show">Show All Employees</a>

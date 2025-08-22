@@ -10,6 +10,6 @@ public interface EmployeeService {
 
     void createEmployee(Employee employee);
     boolean deleteEmployee(Long id);
-    boolean updateEmployee(Long id,Employee employee);
+    boolean updateEmployee(Employee employee);
 
 }

@@ -30,7 +30,7 @@
             gap: 20px;
         }
 
-        .btn {
+        .Btn {
             background-color: #01806d;
             width: 200px;
             padding: 5px;
@@ -39,17 +39,35 @@
             border: none;
             border-radius: 5px;
         }
+        #homeBtn{
+            background-color: rgb(145, 6, 138);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn {
+            transition: .5s;
+        }
+
+        .btn:hover {
+            transition: .5s;
+            box-shadow: 1px 1px 5px black;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
 <body>
 <div class="container">
+    <a href="/home"  class="btn" id="homeBtn">Home</a>
+
     <h1>Get Employee By Id</h1>
     <div class="mainPage">
         <form action="/getEmployee" method="post" class="form">
             <label for="id">Id:</label>
             <input  class="form-control" id="id" name="id" placeholder="Enter your ID">
-            <button type="submit" class="btn btn-primary text-center">Get Employee</button>
+            <button type="submit" class="Btn btn btn-primary text-center">Get Employee</button>
         </form>
         <br>
         <c:if test="${not empty employee}">

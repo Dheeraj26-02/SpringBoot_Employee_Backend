@@ -33,7 +33,7 @@
             align-items:center;
         }
 
-        .btn {
+        .delBtn {
             background-color: red;
             width: 200px;
             padding: 5px;
@@ -42,11 +42,41 @@
             border: none;
             border-radius: 5px;
         }
+        #homeBtn{
+            background-color: rgb(145, 6, 138);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #homeBtn{
+            background-color: rgb(145, 6, 138);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn {
+            transition: .5s;
+        }
+
+        .btn:hover {
+            transition: .5s;
+            box-shadow: 1px 1px 5px black;
+            transform: scale(1.1);
+        }
+
+        .btn:hover {
+            transition: .5s;
+            box-shadow: 1px 1px 5px black;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <a href="/home"  class="btn" id="homeBtn">Home</a>
+
         <h1>Delete Employee</h1>
         <div class="mainPage">
             <form action="/delete" method="post" class="form">
@@ -56,7 +86,7 @@
                     </label>
                     <input name="id" class="form-control" id="id" placeholder="Enter your ID">
                 </div>
-                <button type="submit" class="btn btn-primary text-center">Delete Employee</button>
+                <button type="submit" class="delBtn btn btn-primary text-center">Delete Employee</button>
             </form>
             <div>
             <c:if test="${not empty errorMsg}">
