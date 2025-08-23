@@ -23,10 +23,7 @@
             width: 400px;
         }
         #homeBtn{
-            background-color: rgb(145, 6, 138);
-            color: white;
-            border: none;
-            cursor: pointer;
+            width:50px;
         }
 
         .btn {
@@ -38,14 +35,18 @@
             box-shadow: 1px 1px 5px black;
             transform: scale(1.1);
         }
+        .navbar a{
+            margin-right:100px;
+        }
     </style>
 </head>
 
 <body>
 <div class="container">
-    <a href="/home"  class="btn" id="homeBtn">Home</a>
-
-    <h1>Add New Employee</h1>
+    <div class="navbar">
+        <a href="/home" ><img id="homeBtn" src="back.png"/></a>
+        <h1>Add Employee</h1>
+    </div>
 
     <c:if test="${not empty successMsg}">
         <h4 style="color:green">${successMsg}</h4>

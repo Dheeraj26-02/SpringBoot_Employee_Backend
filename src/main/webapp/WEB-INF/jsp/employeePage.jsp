@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <style>
         .container {
             display: flex;
@@ -44,11 +44,9 @@
             border: none;
             cursor: pointer;
         }
-        #homeBtn{
-            background-color: rgb(145, 6, 138);
-            color: white;
-            border: none;
-            cursor: pointer;
+
+        #homeBtn {
+            width:50px;
         }
 
         .btn {
@@ -60,23 +58,34 @@
             box-shadow: 1px 1px 5px black;
             transform: scale(1.1);
         }
+        .navbar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .navbar a{
+            margin-right:100px;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <a href="/home"  class="btn" id="homeBtn">Home</a>
+<div class="container">
+    <div class="navbar">
+        <a href="/home" ><img id="homeBtn" src="back.png"/></a>
         <h1>Employee Page</h1>
-        <div class="mainPage">
-            <a href="/employees" class="btn btn-primary" id="show">Show All Employees</a>
-            <a href="/getEmployee" class="btn btn-warning" id="getId">Get Employee By Id</a>
-            <a href="/addEmployeePage" class="btn btn-success" id="add">Add Employee</a>
-            <a href="/deleteEmployee" class="btn btn-danger" id="delete">Delete Employee</a>
-            <a href="/updateEmployee" class="btn btn-warning" id="update">Update Employee</a>
-
-        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    <div class="mainPage">
+        <a href="/employees" class="btn btn-primary" id="show">Show All Employees</a>
+        <a href="/getEmployee" class="btn btn-warning" id="getId">Get Employee By Id</a>
+        <a href="/addEmployeePage" class="btn btn-success" id="add">Add Employee</a>
+        <a href="/deleteEmployee" class="btn btn-danger" id="delete">Delete Employee</a>
+        <a href="/updateEmployee" class="btn btn-warning" id="update">Update Employee</a>
+
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 </body>

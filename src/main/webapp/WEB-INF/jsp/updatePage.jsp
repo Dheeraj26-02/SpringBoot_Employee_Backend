@@ -43,12 +43,11 @@
             border-radius: 5px;
         }
         #homeBtn{
-            background-color: rgb(145, 6, 138);
-            color: white;
-            border: none;
-            cursor: pointer;
+            width:50px;
         }
-
+        .navbar a{
+            margin-right:100px;
+        }
         .btn {
             transition: .5s;
         }
@@ -63,9 +62,10 @@
 
 <body>
 <div class="container">
-    <a href="/home"  class="btn" id="homeBtn">Home</a>
-
-    <h1>Enter Id of Employee to Update details</h1>
+    <div class="navbar">
+        <a href="/home" ><img id="homeBtn" src="back.png"/></a>
+        <h1>Enter Id of Employee to Update details</h1>
+    </div>
     <div class="mainPage">
         <form action="/updateById" method="post" class="form">
             <div class="mb-3" class="form">
