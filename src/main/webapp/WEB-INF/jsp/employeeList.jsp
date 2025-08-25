@@ -54,6 +54,7 @@
                     <th>Designation</th>
                     <th>Department</th>
                     <th>Address</th>
+                    <th>Skills</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -65,6 +66,7 @@
                         <td>${emp.designation}</td>
                         <td>${emp.department}</td>
                         <td>${emp.address}</td>
+                        <td>${emp.skills}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

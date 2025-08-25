@@ -32,6 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             emp.setAddress(employeeEntity.getAddress());
             emp.setDesignation(employeeEntity.getDesignation());
             emp.setDepartment(employeeEntity.getDepartment());
+            emp.setSkills(employeeEntity.getSkills());
             employees.add(emp);
         }
         return employees;

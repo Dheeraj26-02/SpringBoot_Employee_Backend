@@ -2,6 +2,10 @@ package com.example.em_project.controller;
 
 
 
+import com.example.em_project.entity.SkillsEntity;
+import com.example.em_project.model.Skills;
+import com.example.em_project.service.SkillsService;
+import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
@@ -13,10 +17,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-
 public class EmpController {
     @Autowired
     EmployeeService employeeService ;
+
+    @Autowired
+    SkillsService skillsService;
 
 
     @GetMapping("/home")
@@ -32,7 +38,9 @@ public class EmpController {
     }
 
     @GetMapping("/getEmployee")
-    public String getEmpl(){
+    public String getEmpl(Model model){
+        List<Skills> skills = skillsService.getAllSkills();
+        model.addAttribute("skills", skills);
         return "getEmpForm";
     }
 
@@ -52,7 +60,9 @@ public class EmpController {
 
 
     @GetMapping("/addEmployeePage")
-    public String employeePage(){
+    public String employeePage(Model model){
+        List<Skills> skills = skillsService.getAllSkills();
+        model.addAttribute("skills", skills);
         return "addEmployee";
     }
 

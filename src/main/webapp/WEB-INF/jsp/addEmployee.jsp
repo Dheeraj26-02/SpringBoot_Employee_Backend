@@ -38,6 +38,7 @@
         .navbar a{
             margin-right:100px;
         }
+
     </style>
 </head>
 
@@ -85,14 +86,34 @@
         </div>
         <div class="mb-3">
             <label for="department" class="form-label">Department:</label>
-            <input name="department" class="form-control" id="department"
-                   value="${employee.department}"
-                   <c:if test="${formDisabled}">disabled</c:if> />
+            <select id="department" name="department" class="form-control"
+                    value="${employee.department}"
+                    <c:if test="${formDisabled}">disabled</c:if>>
+                <option value="Development">Development</option>
+                <option value="Testing">Testing</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Management">Management</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <div class="mb-3">
+                <label for="skills" class="form-label">Select one or more skills:</label>
+                <select id="skills" name="skills" class="form-control" multiple
+                        <c:if test="${formDisabled}">disabled</c:if>>
+                    <c:forEach var="skill" items="${skills}">
+                        <option value="${skill.id}"
+
+                                <c:if test="${skill.skill}">selected</c:if>>
+                                ${skill.skill}
+                        </option>
+                    </c:forEach>
+                </select>
+            </div>
+
         </div>
 
         <c:choose>
             <c:when test="${formDisabled}">
-                <!-- After submission: show two action buttons -->
                 <a href="/employees" class="btn btn-success">Show All Employees</a>
                 <a href="/addEmployeePage" class="btn btn-primary">Add New Employee</a>
             </c:when>

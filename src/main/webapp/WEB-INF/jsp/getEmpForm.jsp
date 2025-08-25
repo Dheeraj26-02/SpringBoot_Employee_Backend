@@ -80,6 +80,7 @@
                 <tr><th>Department</th><td>${employee.department}</td></tr>
                 <tr><th>Designation</th><td>${employee.designation}</td></tr>
                 <tr><th>Address</th><td>${employee.address}</td></tr>
+                <tr><th>Skills</th><td>${employee.skills}</td></tr>
             </table>
         </c:if>
         <c:if test="${not empty errorMsg}">

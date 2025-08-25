@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EmProjectApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(EmProjectApplication.class, args);
+		System.out.println("Server running at "+"http://localhost:9000/");
 	}
 
 }

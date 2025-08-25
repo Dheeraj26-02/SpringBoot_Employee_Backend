@@ -1,6 +1,7 @@
 package com.example.em_project.model;
 
 
+import java.util.List;
 
 public class Employee {
     private Long id;
@@ -9,6 +10,8 @@ public class Employee {
     private String address;
     private String designation;
     private String department;
+
+    private List<String> skills;
     public long getId(){
         return id;
     }
@@ -45,4 +48,12 @@ public class Employee {
     public void setDepartment(String department){
         this.department=department;
     }
+
+    public List<String> getSkills(){
+        return skills;
+    }
+    public void setSkills(List<String> skills){
+        this.skills=skills;
+    }
+
 }
