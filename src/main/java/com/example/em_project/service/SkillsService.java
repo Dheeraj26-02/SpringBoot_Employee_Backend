@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface SkillsService{
     public List<Skills> getAllSkills();
+    public void setAllSkills(List<Skills> skills);
 
 }

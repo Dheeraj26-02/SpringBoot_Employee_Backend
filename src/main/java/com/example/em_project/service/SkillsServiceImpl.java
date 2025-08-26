@@ -29,4 +29,8 @@ public class SkillsServiceImpl implements SkillsService{
         }
         return skills;
     }
+
+    @Override
+    public void setAllSkills(List<Skills> skills) {
+    }
 }

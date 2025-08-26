@@ -24,7 +24,7 @@ public class LoginServiceImpl implements LoginService {
 
         if (optionalLogin.isPresent()) {
             LoginEntity loginEntity = optionalLogin.get();
-            return loginEntity.getPassword().equals(password);
+            return loginEntity.getPassword().equals(password)     ;
         }
         return false;
     }

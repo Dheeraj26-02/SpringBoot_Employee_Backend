@@ -35,6 +35,8 @@
         .navbar a{
             margin-right:100px;
         }
+
+
     </style>
 </head>
 
@@ -66,7 +68,11 @@
                         <td>${emp.designation}</td>
                         <td>${emp.department}</td>
                         <td>${emp.address}</td>
-                        <td>${emp.skills}</td>
+                        <td>
+                            <c:forEach var="skill" items="${emp.skills}">
+                                ${skill.getSkills()} ,
+                            </c:forEach>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

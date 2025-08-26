@@ -1,6 +1,9 @@
 package com.example.em_project.model;
 
 
+import com.example.em_project.entity.SkillsEntity;
+import jakarta.persistence.OneToMany;
+
 import java.util.List;
 
 public class Employee {
@@ -11,7 +14,8 @@ public class Employee {
     private String designation;
     private String department;
 
-    private List<String> skills;
+    @OneToMany
+    private List<SkillsEntity> skills;
     public long getId(){
         return id;
     }
@@ -49,10 +53,10 @@ public class Employee {
         this.department=department;
     }
 
-    public List<String> getSkills(){
+    public List<SkillsEntity> getSkills(){
         return skills;
     }
-    public void setSkills(List<String> skills){
+    public void setSkills(List<SkillsEntity> skills){
         this.skills=skills;
     }
 

@@ -16,14 +16,12 @@ public class LoginController {
     LoginService loginService ;
     @GetMapping("/")
     public String index(Model model){
-        System.out.println("Serving index.jsp.............................");
         model.addAttribute("ld",new LoginDetails());
         return "index";
     }
 
     @PostMapping("/login")
     public String isLogin(@ModelAttribute LoginDetails ld , Model model){
-        System.out.println("Login route working.............................");
         boolean status=loginService.isLogin(ld);
 
         if(status){

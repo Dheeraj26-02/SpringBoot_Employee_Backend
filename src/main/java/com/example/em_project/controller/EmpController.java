@@ -46,7 +46,6 @@ public class EmpController {
 
     @PostMapping("/getEmployee")
     public String getEmployeeById(@RequestParam("id") Long id, Model model) {
-        System.out.print("Getting employee by id............");
         Employee emp = employeeService.getEmployeeById(id);
 
         if (emp != null) {
@@ -82,7 +81,6 @@ public class EmpController {
 
     @PostMapping("/delete")
     public String deleteEmployee(@RequestParam("id") Long id, Model model) {
-        System.out.println("Deleting.......");
         if (employeeService.deleteEmployee(id)) {
             model.addAttribute("successMsg","Employee deleted successfully");
             return "deleteEmployee";
@@ -100,7 +98,6 @@ public class EmpController {
 
     @PostMapping("/updateById")
     public String updateById(@RequestParam("id") Long id, Model model){
-        System.out.print("Getting employee by id............");
         Employee emp = employeeService.getEmployeeById(id);
 
         if (emp != null) {

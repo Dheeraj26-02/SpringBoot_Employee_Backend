@@ -1,6 +1,7 @@
 package com.example.em_project.entity;
 
 import com.example.em_project.model.Employee;
+import com.example.em_project.model.Skills;
 import jakarta.persistence.*;
 
 import java.util.Arrays;
@@ -10,7 +11,6 @@ import java.util.List;
 @Entity
 
 @Table(name="employee")
-
 public class EmployeeEntity {
 
     @Id
@@ -20,7 +20,9 @@ public class EmployeeEntity {
     private String address;
     private String designation;
     private String department;
-    private String skills;
+
+    @ManyToMany
+    private List<SkillsEntity> skills;
     public long getId(){
         return id;
     }
@@ -57,15 +59,11 @@ public class EmployeeEntity {
     public void setDepartment(String department){
         this.department=department;
     }
-    public List<String> getSkills() {
-        return Arrays.asList(skills.split(","));
+    public List<SkillsEntity> getSkills() {
+        return skills;
     }
 
-    public void setSkills(List<String> skills) {
-        this.skills = String.join(",", skills);
+    public void setSkills(List<SkillsEntity> skills) {
+        this.skills = skills;
     }
-
-
-
-
 }
