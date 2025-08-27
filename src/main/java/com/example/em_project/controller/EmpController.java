@@ -1,7 +1,6 @@
 package com.example.em_project.controller;
 
 
-
 import com.example.em_project.entity.SkillsEntity;
 import com.example.em_project.model.Skills;
 import com.example.em_project.service.SkillsService;
@@ -17,28 +16,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("")
 public class EmpController {
     @Autowired
-    EmployeeService employeeService ;
+    EmployeeService employeeService;
 
     @Autowired
     SkillsService skillsService;
 
 
     @GetMapping("/home")
-    public String home(){
+    public String home() {
         return "employeePage";
     }
 
-    @GetMapping("/employees")
-    public String getAllEmployee(Model model) {
-        List<Employee> employees = employeeService.getAllEmployee();
-        model.addAttribute("employees", employees);
-        return "employeeList";
+    @ResponseBody
+    @GetMapping("/api/employees")
+    public List<Employee> getAllEmployees() {
+        return employeeService.getAllEmployee();
     }
 
+
     @GetMapping("/getEmployee")
-    public String getEmpl(Model model){
+    public String getEmpl(Model model) {
         List<Skills> skills = skillsService.getAllSkills();
         model.addAttribute("skills", skills);
         return "getEmpForm";
@@ -47,7 +47,6 @@ public class EmpController {
     @PostMapping("/getEmployee")
     public String getEmployeeById(@RequestParam("id") Long id, Model model) {
         Employee emp = employeeService.getEmployeeById(id);
-
         if (emp != null) {
             model.addAttribute("employee", emp);
             return "getEmpForm";
@@ -59,7 +58,7 @@ public class EmpController {
 
 
     @GetMapping("/addEmployeePage")
-    public String employeePage(Model model){
+    public String employeePage(Model model) {
         List<Skills> skills = skillsService.getAllSkills();
         model.addAttribute("skills", skills);
         return "addEmployee";
@@ -71,21 +70,22 @@ public class EmpController {
         model.addAttribute("employee", employee);
         model.addAttribute("successMsg", "Employee created successfully!");
         model.addAttribute("formDisabled", true);
+        List<Skills> skills = skillsService.getAllSkills();
+        model.addAttribute("skills", skills);
         return "addEmployee";
     }
 
     @GetMapping("/deleteEmployee")
-    public String deleteEmployee(){
+    public String deleteEmployee() {
         return "deleteEmployee";
     }
 
     @PostMapping("/delete")
     public String deleteEmployee(@RequestParam("id") Long id, Model model) {
         if (employeeService.deleteEmployee(id)) {
-            model.addAttribute("successMsg","Employee deleted successfully");
+            model.addAttribute("successMsg", "Employee deleted successfully");
             return "deleteEmployee";
-        }
-        else {
+        } else {
             model.addAttribute("errorMsg", "Employee not found with ID " + id);
             return "deleteEmployee";
         }
@@ -97,9 +97,10 @@ public class EmpController {
     }
 
     @PostMapping("/updateById")
-    public String updateById(@RequestParam("id") Long id, Model model){
+    public String updateById(@RequestParam("id") Long id, Model model) {
         Employee emp = employeeService.getEmployeeById(id);
-
+        List<Skills> skills = skillsService.getAllSkills();
+        model.addAttribute("skills", skills);
         if (emp != null) {
             model.addAttribute("employee", emp);
             return "updateEmployee";
@@ -108,6 +109,7 @@ public class EmpController {
             return "updatePage";
         }
     }
+
     @PostMapping("/update")
     public String updateEmployee(@ModelAttribute("employee") Employee emp, Model model) {
         boolean updated = employeeService.updateEmployee(emp);

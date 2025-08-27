@@ -18,8 +18,6 @@ public class LoginServiceImpl implements LoginService {
     public boolean isLogin(LoginDetails ld) {
         String email = ld.getEmail();
         String password = ld.getPassword();
-        System.out.println(email+" "+password);
-
         Optional<LoginEntity> optionalLogin = loginRepository.findById(email);
 
         if (optionalLogin.isPresent()) {

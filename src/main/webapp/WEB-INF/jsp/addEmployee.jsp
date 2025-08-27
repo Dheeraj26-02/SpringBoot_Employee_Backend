@@ -16,14 +16,16 @@
             gap: 20px;
             justify-content: center;
         }
+
         .form {
             display: flex;
             flex-direction: column;
             gap: 10px;
             width: 400px;
         }
-        #homeBtn{
-            width:50px;
+
+        #homeBtn {
+            width: 50px;
         }
 
         .btn {
@@ -35,8 +37,9 @@
             box-shadow: 1px 1px 5px black;
             transform: scale(1.1);
         }
-        .navbar a{
-            margin-right:100px;
+
+        .navbar a {
+            margin-right: 100px;
         }
 
     </style>
@@ -45,7 +48,7 @@
 <body>
 <div class="container">
     <div class="navbar">
-        <a href="/home" ><img id="homeBtn" src="back.png"/></a>
+        <a href="/home"><img id="homeBtn" src="back.png"/></a>
         <h1>Add Employee</h1>
     </div>
 
@@ -87,13 +90,21 @@
         <div class="mb-3">
             <label for="department" class="form-label">Department:</label>
             <select id="department" name="department" class="form-control"
-                    value="${employee.department}"
                     <c:if test="${formDisabled}">disabled</c:if>>
-                <option value="Development">Development</option>
-                <option value="Testing">Testing</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Management">Management</option>
+                <option value="Development"
+                        <c:if test="${employee.department == 'Development'}">selected</c:if>>Development
+                </option>
+                <option value="Testing"
+                        <c:if test="${employee.department == 'Testing'}">selected</c:if>>Testing
+                </option>
+                <option value="Marketing"
+                        <c:if test="${employee.department == 'Marketing'}">selected</c:if>>Marketing
+                </option>
+                <option value="Management"
+                        <c:if test="${employee.department == 'Management'}">selected</c:if>>Management
+                </option>
             </select>
+
         </div>
         <div class="mb-3">
             <div class="mb-3">
@@ -101,20 +112,22 @@
                 <select id="skills" name="skills" class="form-control" multiple
                         <c:if test="${formDisabled}">disabled</c:if>>
                     <c:forEach var="skill" items="${skills}">
-                        <option value="${skill.id}"
-
-                                <c:if test="${skill.skill}">selected</c:if>>
+                        <c:set var="selected" value="false"/>
+                        <c:forEach var="empSkill" items="${employee.getSkills()}">
+                            <c:if test="${empSkill.getId() == skill.id}">
+                                <c:set var="selected" value="true"/>
+                            </c:if>
+                        </c:forEach>
+                        <option value="${skill.id}" <c:if test="${selected}">selected</c:if>>
                                 ${skill.skill}
                         </option>
                     </c:forEach>
                 </select>
             </div>
-
         </div>
 
         <c:choose>
             <c:when test="${formDisabled}">
-                <a href="/employees" class="btn btn-success">Show All Employees</a>
                 <a href="/addEmployeePage" class="btn btn-primary">Add New Employee</a>
             </c:when>
             <c:otherwise>

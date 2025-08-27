@@ -68,45 +68,50 @@
     <div class="mainPage">
         <form class="form" action="/update" method="post">
             <div class="mb-3">
-                <label for="id" class="form-label"><h5>Id:</h5></label>
+                <label for="id" class="form-label">Id:</label>
                 <input type="text" class="form-control" id="id" name="id"
                        value="${employee.id}" readonly>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label"><h5>Name:</h5></label>
+                <label for="name" class="form-label">Name:</label>
                 <input type="text" class="form-control" id="name" name="name"
                        value="${employee.name}" placeholder="Enter your Name">
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label"><h5>Email address:</h5></label>
+                <label for="email" class="form-label">Email address:</label>
                 <input type="email" class="form-control" id="email" name="email"
                        value="${employee.email}" placeholder="Enter your Email">
             </div>
             <div class="mb-3">
-                <label for="address" class="form-label"><h5>Address:</h5></label>
+                <label for="address" class="form-label">Address:</label>
                 <input type="text" class="form-control" id="address" name="address"
                        value="${employee.address}" placeholder="Enter your address">
             </div>
             <div class="mb-3">
-                <label for="designation" class="form-label"><h5>Designation:</h5></label>
+                <label for="designation" class="form-label">Designation:</label>
                 <input type="text" class="form-control" id="designation" name="designation"
                        value="${employee.designation}" placeholder="Enter your designation">
             </div>
             <div class="mb-3">
-                <label for="department" class="form-label"><h5>Department</h5></label>
+                <label for="department" class="form-label">Department</label>
                 <input type="text" class="form-control" id="department" name="department"
                        value="${employee.department}" placeholder="Enter your department">
             </div>
             <div class="mb-3">
-                <label for="skills" class="form-label" ><h5>Select one or more skills:</h5></label>
+                <label for="skills" class="form-label">Select one or more skills:</label>
                 <select id="skills" name="skills" class="form-control" multiple
-                        value="${employee.skills}"
                         <c:if test="${formDisabled}">disabled</c:if>>
-                    <option value="1">Java</option>
-                    <option value="2">Python</option>
-                    <option value="3">Js</option>
-                    <option value="4">C#</option>
-                    <option value="5">C++</option>
+                    <c:forEach var="skill" items="${skills}">
+                        <c:set var="selected" value="false"/>
+                        <c:forEach var="empSkill" items="${employee.getSkills()}">
+                            <c:if test="${empSkill.getId() == skill.id}">
+                                <c:set var="selected" value="true"/>
+                            </c:if>
+                        </c:forEach>
+                        <option value="${skill.id}" <c:if test="${selected}">selected</c:if>>
+                                ${skill.skill}
+                        </option>
+                    </c:forEach>
                 </select>
             </div>
             <br>

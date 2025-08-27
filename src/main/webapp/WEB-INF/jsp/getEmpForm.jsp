@@ -18,15 +18,16 @@
             gap: 20px;
             justify-content: center;
         }
-        .form{
-            display:flex;
+
+        .form {
+            display: flex;
             flex-direction: column;
-            gap:20px;
+            gap: 20px;
         }
 
         .mainPage {
             display: flex;
-            flex-direction:column;
+            flex-direction: column;
             gap: 20px;
         }
 
@@ -39,8 +40,9 @@
             border: none;
             border-radius: 5px;
         }
-        #homeBtn{
-            width:50px;
+
+        #homeBtn {
+            width: 50px;
         }
 
         .btn {
@@ -52,8 +54,9 @@
             box-shadow: 1px 1px 5px black;
             transform: scale(1.1);
         }
-        .navbar a{
-            margin-right:100px;
+
+        .navbar a {
+            margin-right: 100px;
         }
     </style>
 </head>
@@ -61,26 +64,52 @@
 <body>
 <div class="container">
     <div class="navbar">
-        <a href="/home" ><img id="homeBtn" src="back.png"/></a>
+        <a href="/home"><img id="homeBtn" src="back.png"/></a>
         <h1>Get Employee By Id</h1>
     </div>
     <div class="mainPage">
         <form action="/getEmployee" method="post" class="form">
             <label for="id">Id:</label>
-            <input  class="form-control" id="id" name="id" placeholder="Enter your ID">
+            <input class="form-control" id="id" name="id" placeholder="Enter your ID">
             <button type="submit" class="Btn btn btn-primary text-center">Get Employee</button>
         </form>
         <br>
         <c:if test="${not empty employee}">
             <h3>Employee Details</h3>
             <table class="table table-bordered">
-                <tr><th>ID</th><td>${employee.id}</td></tr>
-                <tr><th>Name</th><td>${employee.name}</td></tr>
-                <tr><th>Email</th><td>${employee.email}</td></tr>
-                <tr><th>Department</th><td>${employee.department}</td></tr>
-                <tr><th>Designation</th><td>${employee.designation}</td></tr>
-                <tr><th>Address</th><td>${employee.address}</td></tr>
-                <tr><th>Skills</th><td>${employee.skills}</td></tr>
+                <tr>
+                    <th>ID</th>
+                    <td>${employee.id}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>${employee.name}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>${employee.email}</td>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <td>${employee.department}</td>
+                </tr>
+                <tr>
+                    <th>Designation</th>
+                    <td>${employee.designation}</td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>${employee.address}</td>
+                </tr>
+                <tr>
+                    <th>Skills</th>
+                    <td>
+                        <c:forEach var="skill" items="${employee.skills}" varStatus="status">
+                            ${skill.skills}<c:if test="${!status.last}">, </c:if>
+                        </c:forEach>
+                    </td>
+
+                </tr>
             </table>
         </c:if>
         <c:if test="${not empty errorMsg}">

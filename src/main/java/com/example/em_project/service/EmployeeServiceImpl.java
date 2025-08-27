@@ -81,6 +81,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             existing.setAddress(employee.getAddress());
             existing.setDesignation(employee.getDesignation());
             existing.setDepartment(employee.getDepartment());
+            existing.setSkills(employee.getSkills());
             employeeRepository.save(existing);
             return true;
         }

@@ -46,7 +46,7 @@
         }
 
         #homeBtn {
-            width:50px;
+            width: 50px;
         }
 
         .btn {
@@ -58,13 +58,15 @@
             box-shadow: 1px 1px 5px black;
             transform: scale(1.1);
         }
-        .navbar{
+
+        .navbar {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
         }
-        .navbar a{
-            margin-right:100px;
+
+        .navbar a {
+            margin-right: 100px;
         }
 
     </style>
@@ -73,21 +75,60 @@
 <body>
 <div class="container">
     <div class="navbar">
-        <a href="/home" ><img id="homeBtn" src="back.png"/></a>
+        <a href="/home"><img id="homeBtn" src="back.png"/></a>
         <h1>Employee Page</h1>
     </div>
     <div class="mainPage">
-        <a href="/employees" class="btn btn-primary" id="show">Show All Employees</a>
+        <button class="btn btn-primary" id="show">Show All Employees</button>
         <a href="/getEmployee" class="btn btn-warning" id="getId">Get Employee By Id</a>
         <a href="/addEmployeePage" class="btn btn-success" id="add">Add Employee</a>
         <a href="/deleteEmployee" class="btn btn-danger" id="delete">Delete Employee</a>
         <a href="/updateEmployee" class="btn btn-warning" id="update">Update Employee</a>
 
     </div>
+    <div id="employeeList" class="mt-4"></div>
 </div>
+<script>
+    document.getElementById("show").addEventListener("click", function () {
+        fetch("/api/employees")   // AJAX call to backend
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                let html = `<table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Designation</th>
+                                <th>Skills</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>`;
+                data.forEach(emp => {
+                    html += `<tr>
+                        <td>\${emp.id} </td>
+                        <td>\${emp.name}</td>
+                        <td>\${emp.email}</td>
+                        <td>\${emp.department}</td>
+                        <td>\${emp.designation}</td>
+                        <td>\${emp.skills.map(skill => skill.skills).join(", ")}</td>
+                    </tr>`;
+                });
+                html += `</tbody></table>`;
+
+                // Insert into div
+                document.getElementById("employeeList").innerHTML = html;
+            })
+            .catch(error => console.error("Error fetching employees:", error));
+    });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 </body>
 
 </html>
+
