@@ -1,19 +1,22 @@
 package com.example.em_project.controller;
 
 
-import com.example.em_project.entity.SkillsEntity;
-import com.example.em_project.model.Skills;
-import com.example.em_project.service.SkillsService;
-import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.em_project.model.Employee;
+import com.example.em_project.model.Skills;
 import com.example.em_project.service.EmployeeService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import com.example.em_project.service.SkillsService;
 
 @Controller
 @RequestMapping("")
@@ -100,8 +103,8 @@ public class EmpController {
     public String updateById(@RequestParam("id") Long id, Model model) {
         Employee emp = employeeService.getEmployeeById(id);
         List<Skills> skills = skillsService.getAllSkills();
-        model.addAttribute("skills", skills);
         if (emp != null) {
+            model.addAttribute("skills", skills);
             model.addAttribute("employee", emp);
             return "updateEmployee";
         } else {

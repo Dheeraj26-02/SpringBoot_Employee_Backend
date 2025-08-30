@@ -1,127 +1,128 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+        <!DOCTYPE html>
+        <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Employee</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <style>
-        .container {
-            display: flex;
-            padding: 20px;
-            align-items: center;
-            flex-direction: column;
-            gap: 20px;
-            justify-content: center;
-        }
+        <head>
+            <meta charset="UTF-8">
+            <title>Update Employee</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+            <style>
+                .container {
+                    display: flex;
+                    padding: 20px;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 20px;
+                    justify-content: center;
+                }
 
-        .mainPage {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            justify-content: center;
-        }
+                .form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    width: 400px;
+                }
 
-        .form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+                #homeBtn {
+                    width: 50px;
+                }
 
-        #homeBtn {
-            width: 50px;
-        }
+                .btn {
+                    transition: .5s;
+                }
 
-        .navbar a {
-            margin-right: 100px;
-        }
+                .btn:hover {
+                    transition: .5s;
+                    box-shadow: 1px 1px 5px black;
+                    transform: scale(1.1);
+                }
 
-        .btn {
-            transition: .5s;
-        }
+                .navbar a {
+                    margin-right: 100px;
+                }
+            </style>
+        </head>
 
-        .btn:hover {
-            transition: .5s;
-            box-shadow: 1px 1px 5px black;
-            transform: scale(1.1);
-        }
-    </style>
-</head>
+        <body>
+            <div class="container">
+                <div class="navbar">
+                    <a href="/home"><img id="homeBtn" src="back.png" /></a>
+                    <h1>Update Employee</h1>
+                </div>
 
-<body>
-<div class="container">
-    <div class="navbar">
-        <a href="/home"><img id="homeBtn" src="back.png"/></a>
-        <h1>Update Employee Data</h1>
-    </div>
-    <c:if test="${not empty successMsg}">
-        <h4 style="color:green">${successMsg}</h4>
-    </c:if>
-    <c:if test="${not empty errorMsg}">
-        <h4 style="color:red">${errorMsg}</h4>
-    </c:if>
+                <c:if test="${not empty successMsg}">
+                    <h4 style="color:green">${successMsg}</h4>
+                </c:if>
 
-    <div class="mainPage">
-        <form class="form" action="/update" method="post">
-            <div class="mb-3">
-                <label for="id" class="form-label">Id:</label>
-                <input type="text" class="form-control" id="id" name="id"
-                       value="${employee.id}" readonly>
+                <form class="form" action="/register" method="post">
+                    <div class="mb-3">
+                        <label for="id" class="form-label">Id:</label>
+                        <input name="id" class="form-control" id="id" value="${employee.id}" <c:if
+                            test="${formDisabled}">disabled</c:if> />
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input name="name" class="form-control" id="name" value="${employee.name}" <c:if
+                            test="${formDisabled}">disabled</c:if> />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input name="email" class="form-control" id="email" value="${employee.email}" <c:if
+                            test="${formDisabled}">disabled</c:if> />
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address:</label>
+                        <input name="address" class="form-control" id="address" value="${employee.address}" <c:if
+                            test="${formDisabled}">disabled</c:if> />
+                    </div>
+                    <div class="mb-3">
+                        <label for="designation" class="form-label">Designation:</label>
+                        <input name="designation" class="form-control" id="designation" value="${employee.designation}"
+                            <c:if test="${formDisabled}">disabled</c:if> />
+                    </div>
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Department:</label>
+                        <select id="department" name="department" class="form-control" <c:if
+                            test="${formDisabled}">disabled</c:if>>
+                            <option value="Development" <c:if test="${employee.department == 'Development'}">selected
+                                </c:if>>Development
+                            </option>
+                            <option value="Testing" <c:if test="${employee.department == 'Testing'}">selected</c:if>
+                                >Testing
+                            </option>
+                            <option value="Marketing" <c:if test="${employee.department == 'Marketing'}">selected</c:if>
+                                >Marketing
+                            </option>
+                            <option value="Management" <c:if test="${employee.department == 'Management'}">selected
+                                </c:if>>Management
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="skills" class="form-label">Select one or more skills:</label>
+                            <select id="skills" name="skills" class="form-control" multiple <c:if
+                                test="${formDisabled}">disabled</c:if>>
+                                <c:forEach var="skill" items="${skills}">
+                                    <c:set var="selected" value="false" />
+                                    <c:forEach var="empSkill" items="${employee.getSkills()}">
+                                        <c:if test="${empSkill.getId() == skill.id}">
+                                            <c:set var="selected" value="true" />
+                                        </c:if>
+                                    </c:forEach>
+                                    <option value="${skill.id}" <c:if test="${selected}">selected</c:if>>
+                                        ${skill.skill}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="name" name="name"
-                       value="${employee.name}" placeholder="Enter your Name">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email address:</label>
-                <input type="email" class="form-control" id="email" name="email"
-                       value="${employee.email}" placeholder="Enter your Email">
-            </div>
-            <div class="mb-3">
-                <label for="address" class="form-label">Address:</label>
-                <input type="text" class="form-control" id="address" name="address"
-                       value="${employee.address}" placeholder="Enter your address">
-            </div>
-            <div class="mb-3">
-                <label for="designation" class="form-label">Designation:</label>
-                <input type="text" class="form-control" id="designation" name="designation"
-                       value="${employee.designation}" placeholder="Enter your designation">
-            </div>
-            <div class="mb-3">
-                <label for="department" class="form-label">Department</label>
-                <input type="text" class="form-control" id="department" name="department"
-                       value="${employee.department}" placeholder="Enter your department">
-            </div>
-            <div class="mb-3">
-                <label for="skills" class="form-label">Select one or more skills:</label>
-                <select id="skills" name="skills" class="form-control" multiple
-                        <c:if test="${formDisabled}">disabled</c:if>>
-                    <c:forEach var="skill" items="${skills}">
-                        <c:set var="selected" value="false"/>
-                        <c:forEach var="empSkill" items="${employee.getSkills()}">
-                            <c:if test="${empSkill.getId() == skill.id}">
-                                <c:set var="selected" value="true"/>
-                            </c:if>
-                        </c:forEach>
-                        <option value="${skill.id}" <c:if test="${selected}">selected</c:if>>
-                                ${skill.skill}
-                        </option>
-                    </c:forEach>
-                </select>
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Update</button>
-        </form>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-</body>
+        </body>
 
-</html>
+        </html>

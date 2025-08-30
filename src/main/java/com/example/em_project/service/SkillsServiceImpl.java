@@ -1,22 +1,21 @@
 package com.example.em_project.service;
 
-import com.example.em_project.entity.EmployeeEntity;
-import com.example.em_project.entity.SkillsEntity;
-import com.example.em_project.model.Employee;
-import com.example.em_project.model.Skills;
-import com.example.em_project.repository.EmployeeRepository;
-import com.example.em_project.repository.SkillsRepository;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.em_project.entity.SkillsEntity;
+import com.example.em_project.model.Skills;
+import com.example.em_project.repository.SkillsRepository;
 
 @Service
 public class SkillsServiceImpl implements SkillsService{
 
     @Autowired
     private SkillsRepository skillsRepository;
+    
     @Override
     public List<Skills> getAllSkills() {
         List<Skills> skills = new ArrayList<>();
